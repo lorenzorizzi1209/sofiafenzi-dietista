@@ -1,0 +1,8 @@
+Immagini usate dal sito
+=======================
+
+logo.jpg         -> logo "SF" in alto a sinistra (link alla home). Altezza resa: 52px.
+foto-profilo.png -> ritratto Dott.ssa Sofia Fenzi, sezione "Chi Sono" (PNG con sfondo
+                    trasparente su fondo verde scuro).
+
+Sostituendo questi file mantieni gli stessi nomi.

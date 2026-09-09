@@ -35,12 +35,38 @@ un'ottimizzazione mobile più spinta. I contenuti verranno modificati in seguito
 - `images/foto-profilo.png` → ritratto Sofia Fenzi (sezione "Chi Sono"), PNG con
   sfondo trasparente su fondo verde scuro.
 
-## Pubblicazione (GitHub Pages)
+## Pubblicazione
 
-1. Nuovo repository GitHub (separato da quello di Lorenzo).
-2. Carica il contenuto di questa cartella nella root.
-3. Settings → Pages → Deploy from branch → `main` / root.
-4. Dominio personalizzato: file `CNAME` + configurazione DNS.
+Online su **GitHub Pages**.
+
+- Repo: `github.com/lorenzorizzi1209/sofiafenzi-dietista` (branch `main`, root)
+- Dominio: `sofiafenzidietista.it` (file `CNAME`)
+- Per pubblicare aggiornamenti: `git add -A && git commit -m "..." && git push`
+
+### DNS da configurare su Aruba (dominio nudo `sofiafenzidietista.it`)
+
+Record A per `@` (sostituire quelli esistenti di Aruba):
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+Record AAAA per `@` (IPv6, opzionali):
+
+```
+2606:50c0:8000::153
+2606:50c0:8001::153
+2606:50c0:8002::153
+2606:50c0:8003::153
+```
+
+Record CNAME per `www` → `lorenzorizzi1209.github.io`
+
+Dopo la propagazione DNS, GitHub emette il certificato HTTPS in automatico; poi
+attivare "Enforce HTTPS" in Settings → Pages.
 
 ## Anteprima locale
 

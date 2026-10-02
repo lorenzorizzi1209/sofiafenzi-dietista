@@ -90,7 +90,7 @@ if (statNums.length) {
 // Cookie consent banner + analytics (Google Analytics + Meta Pixel)
 // Lascia i valori vuoti finche non hai gli ID reali: senza ID lo script
 // non carica nulla e il banner continua comunque a funzionare.
-const GA_MEASUREMENT_ID = ''; // es. 'G-XXXXXXXXXX'
+const GA_MEASUREMENT_ID = 'G-D03G6FQD9G';
 const META_PIXEL_ID = '';     // es. '000000000000000'
 
 // Solo i pulsanti "Prenota" e "Scrivimi" (link WhatsApp) contano come contatto

@@ -1287,6 +1287,33 @@ footer span {
   }
 }
 
+@media (max-width: 600px) {
+  .cookie-banner {
+    padding: 16px 16px 14px;
+  }
+  .cookie-banner-inner {
+    gap: 10px;
+  }
+  .cookie-banner-text h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .cookie-banner-text p {
+    font-size: 0.72rem;
+    line-height: 1.5;
+    max-height: 4.5em;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .cookie-banner-actions {
+    gap: 8px;
+  }
+  .cookie-banner-actions .btn {
+    padding: 10px 18px;
+    font-size: 0.68rem;
+  }
+}
+
 /* Fade-in animation */
 .reveal {
   opacity: 0;

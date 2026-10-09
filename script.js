@@ -29,12 +29,8 @@ document.querySelectorAll('.faq-question').forEach(btn => {
 // Navbar shadow on scroll
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    navbar.style.boxShadow = '0 8px 30px rgba(28, 58, 43, 0.08)';
-  } else {
-    navbar.style.boxShadow = 'none';
-  }
-});
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
 
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
@@ -49,55 +45,21 @@ const observer = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => observer.observe(el));
 
-// Animated counting numbers (stats in "Chi Sono")
-const statNums = document.querySelectorAll('.stat .num');
-
-function animateCount(el) {
-  const target = parseInt(el.dataset.target, 10) || 0;
-  const suffix = el.dataset.suffix || '';
-  const duration = 1600;
-  let startTime = null;
-
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const progress = Math.min((timestamp - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-    const current = Math.floor(eased * target);
-    el.textContent = current.toLocaleString('it-IT') + suffix;
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      el.textContent = target.toLocaleString('it-IT') + suffix;
-    }
-  }
-
-  requestAnimationFrame(step);
-}
-
-if (statNums.length) {
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  statNums.forEach(el => statsObserver.observe(el));
-}
-
 // Cookie consent banner + analytics (Google Analytics + Meta Pixel)
 // Lascia i valori vuoti finche non hai gli ID reali: senza ID lo script
 // non carica nulla e il banner continua comunque a funzionare.
 const GA_MEASUREMENT_ID = 'G-D03G6FQD9G';
 const META_PIXEL_ID = '';     // es. '000000000000000'
 
-// Solo i pulsanti "Prenota" e "Scrivimi" (link WhatsApp) contano come contatto
+// Nomi degli eventi inviati a Google Analytics
+const GA_EVENT_HOME = 'Sofia Fenzi | Home';     // quando qualcuno arriva sul sito
+const GA_EVENT_PREZZI = 'Sofia Fenzi | Prezzi'; // quando vengono visualizzati i box dei prezzi
+
+// Solo i pulsanti WhatsApp ("Scrivimi", "Fammi una domanda") contano come contatto
 function trackButtonClicks() {
   document.querySelectorAll('a[href^="https://wa.me"]').forEach(el => {
     el.addEventListener('click', () => {
-      const label = el.textContent.trim();
+      const label = el.dataset.label || el.textContent.replace(/\s+/g, ' ').trim();
       if (window.gtag) {
         window.gtag('event', 'contact_click', { event_category: 'contatto', event_label: label });
       }
@@ -140,10 +102,22 @@ function loadAnalytics() {
     window.fbq('track', 'PageView');
   }
 
-  // Evento dedicato per chi arriva sulla pagina Percorsi e Costi
-  if (document.querySelector('.offer-hero') && window.location.pathname.includes('offerta')) {
-    if (window.fbq) window.fbq('track', 'ViewContent', { content_name: 'Percorsi e Costi' });
-    if (window.gtag) window.gtag('event', 'view_offer_page');
+  // Evento 1: arrivo sul sito (solo nella pagina principale)
+  if (window.gtag && document.getElementById('hero')) {
+    window.gtag('event', GA_EVENT_HOME);
+  }
+
+  // Evento 2: visualizzazione dei box con i prezzi (una sola volta per visita)
+  const priceBoxes = document.querySelector('.price-cards');
+  if (priceBoxes) {
+    const pricingObserver = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        pricingObserver.disconnect();
+        if (window.gtag) window.gtag('event', GA_EVENT_PREZZI);
+        if (window.fbq) window.fbq('track', 'ViewContent', { content_name: 'Percorsi e Costi' });
+      }
+    }, { threshold: 0.25 });
+    pricingObserver.observe(priceBoxes);
   }
 
   trackButtonClicks();

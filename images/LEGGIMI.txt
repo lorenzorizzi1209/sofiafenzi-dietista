@@ -1,8 +1,10 @@
 Immagini usate dal sito
 =======================
 
-logo.jpg         -> logo "SF" in alto a sinistra (link alla home). Altezza resa: 52px.
-foto-profilo.png -> ritratto Dott.ssa Sofia Fenzi, sezione "Chi Sono" (PNG con sfondo
-                    trasparente su fondo verde scuro).
+logo-sm.webp         -> logo "SF" in alto a sinistra (link alla home). Versione leggera (120 px).
+logo.jpg             -> originale del logo (non usato dal sito, da tenere per rigenerare il WebP).
+foto-profilo.webp    -> ritratto Dott.ssa Sofia Fenzi nella hero (WebP con sfondo trasparente,
+                        720 px). E' il file usato dal sito.
+foto-profilo.png     -> originale della foto (non usato dal sito, da tenere per rigenerare il WebP).
 
-Sostituendo questi file mantieni gli stessi nomi.
+Se sostituisci una foto, rigenera anche il WebP con lo stesso nome.

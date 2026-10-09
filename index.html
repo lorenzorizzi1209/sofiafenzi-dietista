@@ -17,15 +17,16 @@
 <header class="navbar">
   <div class="nav-inner">
     <a href="#hero" class="logo">
-      <img src="images/logo.jpg" alt="Sofia Fenzi - Dietista" class="logo-img">
+      <img src="images/logo-sm.webp" alt="Sofia Fenzi - Dietista" class="logo-img" width="120" height="113">
     </a>
     <nav class="nav-links">
       <a href="#hero">Home</a>
       <a href="#chi-sono">Chi Sono</a>
       <a href="#servizi">Servizi</a>
-      <a href="offerta.html#faq">FAQ</a>
+      <a href="#come-funziona">Come Funziona</a>
+      <a href="#costi">Percorsi e Costi</a>
+      <a href="#faq">FAQ</a>
       <a href="#contatti">Contatti</a>
-      <a href="offerta.html" class="nav-cta">Percorsi e Costi</a>
     </nav>
     <button class="hamburger" aria-label="Apri menu">
       <span></span>
@@ -35,21 +36,16 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-content">
-    <span class="hero-eyebrow">Dietista</span>
-    <h1>Hai già provato tutto. <span class="accent">Proviamo qualcosa che funziona davvero.</span></h1>
-    <p>Costruiamo insieme un piano alimentare realistico, sostenibile e cucito su di te.</p>
-    <a href="offerta.html" class="btn btn-primary">Scopri Come Funziona</a>
-    <span class="hero-ornament" aria-hidden="true">
-      <svg width="150" height="12" viewBox="0 0 150 12" fill="none" stroke="#3c6d53" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="4" y1="6" x2="61" y2="6"></line>
-        <line x1="89" y1="6" x2="146" y2="6"></line>
-        <path d="M75 1.5l4.5 4.5L75 10.5 70.5 6z"></path>
-        <circle cx="75" cy="6" r="0.9" fill="#3c6d53" stroke="none"></circle>
-      </svg>
-    </span>
+<!-- HERO: FOTO + NOME -->
+<section class="hero-photo" id="hero">
+  <div class="container">
+    <div class="hero-photo-box">
+      <div class="hero-photo-clip">
+        <img src="images/foto-profilo.webp" alt="Dott.ssa Sofia Fenzi, dietista" width="720" height="897" fetchpriority="high">
+      </div>
+    </div>
+    <h1>Dott.ssa Sofia Fenzi</h1>
+    <span class="hero-role">Dietista</span>
   </div>
 </section>
 
@@ -58,32 +54,11 @@
   <div class="container">
     <span class="section-tag">Chi Sono</span>
     <div class="divider"></div>
-    <div class="about-grid">
-      <div class="about-photo reveal">
-        <img src="images/foto-profilo.png" alt="Dott.ssa Sofia Fenzi, dietista" onerror="this.style.display='none'">
-      </div>
-      <div class="about-text reveal">
-        <h2>Dott.ssa Sofia Fenzi</h2>
-        <span class="role">Dietista · Specializzata in Perdita di Peso e Benessere</span>
-        <p>Se sei qui dopo aver visto un mio contenuto, probabilmente già mi conosci.</p>
-        <p>Sono Sofia, dietista laureata all'Università di Brescia con un Master in Disturbi Alimentari. Lavoro a Verona con chi vuole perdere peso in modo definitivo, senza schemi rigidi e senza rinunciare alla propria vita.</p>
-        <p>So quanto può essere frustrante iniziare una dieta, vedere qualche risultato, e poi ritrovarsi al punto di partenza.</p>
-        <p>Il mio approccio è semplice: costruiamo insieme un piano che funziona per te, non contro di te.</p>
-        <div class="stats">
-          <div class="stat">
-            <div class="num" data-target="3" data-suffix="+">0+</div>
-            <div class="label">Anni di esperienza</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="300" data-suffix="+">0+</div>
-            <div class="label">Clienti seguiti</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-target="2000" data-suffix="+">0+</div>
-            <div class="label">Kg persi</div>
-          </div>
-        </div>
-      </div>
+    <div class="about-text about-text-wide reveal">
+      <p class="about-lead">Se sei qui dopo aver visto un mio contenuto, probabilmente già mi conosci.</p>
+      <p>Sono Sofia, dietista laureata all'Università di Brescia con un Master in Disturbi Alimentari. Lavoro a Verona con chi vuole perdere peso in modo definitivo, senza schemi rigidi e senza rinunciare alla propria vita.</p>
+      <p>So quanto può essere frustrante iniziare una dieta, vedere qualche risultato, e poi ritrovarsi al punto di partenza.</p>
+      <p class="about-quote">Il mio approccio è semplice: costruiamo insieme un piano che funziona per te, non contro di te.</p>
     </div>
   </div>
 </section>
@@ -95,7 +70,7 @@
     <h2 class="section-title">Un percorso su misura per te</h2>
     <p class="section-subtitle">Ogni percorso è costruito attorno ai tuoi obiettivi, alle tue abitudini e al tuo stile di vita.</p>
     <div class="services-grid">
-      <a href="offerta.html" class="service-card reveal">
+      <a href="#costi" class="service-card reveal">
         <div class="service-header">
           <div class="service-icon">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="#2f5b44" stroke="none">
@@ -108,7 +83,7 @@
         <span class="service-subtitle">Dimagrimento, massa muscolare, ricomposizione corporea</span>
         <p>Un piano alimentare su misura per trasformare la tua composizione corporea: aumenta la massa muscolare o definisci la tua forma fisica, monitorando i progressi con plicometria e un supporto costante.</p>
       </a>
-      <a href="offerta.html" class="service-card reveal">
+      <a href="#costi" class="service-card reveal">
         <div class="service-header">
           <div class="service-icon">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2f5b44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -120,7 +95,7 @@
         <span class="service-subtitle">Alimentazione consapevole, energia, equilibrio</span>
         <p>Un percorso alimentare per imparare a mangiare bene: più energia, digestione migliore, un rapporto sano col cibo e la consapevolezza per fare scelte giuste ogni giorno.</p>
       </a>
-      <a href="offerta.html" class="service-card reveal">
+      <a href="#costi" class="service-card reveal">
         <div class="service-header">
           <div class="service-icon">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2f5b44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -133,11 +108,196 @@
         <p>Nutrizione pensata per chi vuole dare di più in allenamento: più energia, recupero migliore e risultati concreti, con un piano costruito attorno al tuo sport e ai tuoi obiettivi di performance.</p>
       </a>
     </div>
-    <div class="services-cta reveal">
-      <a href="offerta.html" class="btn btn-primary">Vedi Percorsi e Prezzi</a>
+  </div>
+</section>
+
+<!-- COME FUNZIONANO I PERCORSI -->
+<section class="offer-content" id="come-funziona">
+  <div class="container">
+    <h2 class="section-title">Il mio metodo</h2>
+
+    <div class="offer-block reveal">
+      <p>Non propongo diete standardizzate né menù uguali per tutte. Ogni piano nasce da un'analisi approfondita delle tue abitudini, dei tuoi obiettivi e del tuo stile di vita, con un monitoraggio costante che permette di adattarlo mentre il percorso procede.</p>
+      <p>Che tu voglia perdere peso, migliorare energia e digestione o semplicemente ritrovare un rapporto sereno con il cibo, costruiamo insieme un percorso concreto, flessibile e sostenibile, che puoi mantenere anche una volta raggiunto l'obiettivo.</p>
+    </div>
+
+    <div class="offer-block reveal">
+      <h2>Come Funziona il Percorso</h2>
+      <p>Un processo chiaro, strutturato in 5 fasi, per portarti dalla prima visita ai risultati.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h4>Prima Visita</h4>
+        <p>Analizziamo insieme storia clinica, stile di vita, obiettivi e abitudini alimentari attuali.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h4>Valutazione Iniziale e Plicometria</h4>
+        <p>Valutazione della composizione corporea tramite plicometria, per avere un punto di partenza oggettivo su massa grassa e massa magra.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h4>Costruzione Piano Personalizzato</h4>
+        <p>Costruzione del piano nutrizionale e, se necessario, del protocollo di integrazione più adatto a te.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <h4>Supporto Continuativo</h4>
+        <p>Ti accompagno lungo tutto il percorso con supporto costante per chiarimenti, aggiustamenti e motivazione.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">5</div>
+        <h4>Rivalutazioni Periodiche</h4>
+        <p>Controlli periodici e aggiustamenti costanti del piano in base ai progressi e alle sensazioni riportate.</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- COSA COMPRENDE IL PERCORSO -->
+<section class="offer-content includes" id="cosa-comprende">
+  <div class="container">
+    <h2 class="section-title">Cosa comprende il percorso?</h2>
+    <ul class="includes-list reveal">
+      <li>Piano alimentare personalizzato su obiettivi e abitudini</li>
+      <li>Valutazione completa della composizione corporea (tramite plicometria)</li>
+      <li>Aggiustamenti periodici del piano in base ai progressi</li>
+      <li>Indicazioni di integrazione personalizzate, quando necessarie</li>
+      <li>Strategie pratiche per facilitare l'organizzazione di pasti e scelte quotidiane</li>
+      <li>Supporto in tempo reale con WhatsApp</li>
+    </ul>
+  </div>
+</section>
+
+<!-- COSTI E PACCHETTI -->
+<section class="offer-content pricing" id="costi">
+  <div class="container">
+    <h2 class="section-title">Costi e Pacchetti</h2>
+
+    <div class="price-cards">
+      <div class="price-card reveal">
+        <h3>Visite Singole</h3>
+        <div class="price-row">
+          <span class="price-name">
+            <strong>Prima visita</strong>
+            <small>~60 minuti</small>
+          </span>
+          <span class="price-amount">€110</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">
+            <strong>Visita di controllo</strong>
+            <small>~30 minuti</small>
+          </span>
+          <span class="price-amount">€50</span>
+        </div>
+      </div>
+
+      <div class="price-card reveal">
+        <h3>Pacchetti</h3>
+        <div class="price-row">
+          <span class="price-name">
+            <strong>Percorso 3 Mesi</strong>
+            <small>1 visita + 2 controlli</small>
+          </span>
+          <span class="price-amount"><s>€210</s>€189</span>
+        </div>
+        <div class="price-row">
+          <span class="price-name">
+            <strong>Percorso 6 Mesi</strong>
+            <small>1 visita + 5 controlli</small>
+          </span>
+          <span class="price-amount"><s>€360</s>€299</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<div class="offer-cta" id="prenota">
+  <h2>IL PRIMO PASSO È PIÙ SEMPLICE DI QUANTO PENSI</h2>
+  <p>Premi il pulsante qua sotto per prenotare la tua visita su WhatsApp</p>
+  <a href="https://wa.me/393487348278?text=Buongiorno%20Sofia%2C%20ho%20visto%20il%20sito%20e%20vorrei%20prenotare%20una%20visita" target="_blank" rel="noopener" class="btn btn-primary">Scrivimi</a>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <span class="section-tag">Domande Frequenti</span>
+    <h2 class="section-title">Hai dei dubbi? Ecco le risposte</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">Come si svolge la prima consulenza?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Nella prima visita raccogliamo la tua storia alimentare, lo stile di vita, gli obiettivi che vuoi raggiungere ed eventuali problematiche o intolleranze. Viene eseguita una valutazione della composizione corporea, per avere un punto di partenza oggettivo su massa grassa e massa magra. Sulla base di questi dati costruisco un piano alimentare personalizzato, con indicazioni pratiche su organizzazione dei pasti e scelte alimentari da seguire nella quotidianità.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Con quale frequenza sono previsti gli appuntamenti di controllo?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Inizialmente i controlli sono previsti a circa un mese di distanza l'uno dall'altro, un intervallo che permette di monitorare i primi risultati e apportare eventuali aggiustamenti al piano. Successivamente la frequenza viene rivalutata insieme in base alle tue necessità, ai progressi raggiunti e al livello di autonomia che hai acquisito nel seguire il percorso.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Dovrò eliminare completamente carboidrati, dolci o altri alimenti?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>No, l'obiettivo non è eliminare gli alimenti che ami, ma imparare a inserirli nel modo e nella quantità giusta. Un percorso alimentare sostenibile nel tempo prevede spazio anche per i carboidrati e per qualche dolce, perché un piano troppo restrittivo è difficile da mantenere e spesso porta ad abbandonare il percorso o a recuperare il peso perso. Il vero cambiamento passa dall'equilibrio, non dalla rinuncia totale.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Ho già fatto diete in passato e il menù settimanale mi crea problemi, come posso risolvere?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>È un'esperienza comune, e proprio per questo il percorso viene costruito diversamente: invece di un menù fisso e uguale per tutti i giorni, ricevi un piano ricco di alternative e sostituzioni tra cui scegliere liberamente. Questo significa che puoi adattare i pasti alle tue voglie, ai tuoi impegni e alle tue preferenze del momento, senza sentirti bloccata in uno schema rigido. Se un certo alimento non ti va o hai voglia di qualcos'altro, hai sempre un'opzione equivalente a disposizione: è un approccio pensato per essere flessibile e realmente sostenibile nel tempo.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Quanto dura un percorso nutrizionale tipo?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>La durata dipende dall'obiettivo che vuoi raggiungere. Se l'obiettivo è imparare a mangiare in modo corretto e acquisire consapevolezza alimentare, possono bastare poche consulenze. Per una perdita di peso importante o un cambiamento stabile della composizione corporea, invece, sono consigliati almeno 3 mesi di percorso, il tempo necessario per vedere risultati significativi e per imparare a mantenerli nel tempo.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Nel percorso consigli anche integratori?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Quando necessario, sì: eventuali integratori vengono valutati caso per caso, sempre in funzione dei tuoi obiettivi e delle reali necessità emerse dalla valutazione iniziale, non vengono consigliati in automatico a tutti.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALTRE INFORMAZIONI -->
+<div class="info-cta">
+  <div class="container">
+    <div class="info-cta-box reveal">
+      <div class="info-cta-icon">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2f5b44" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+      </div>
+      <div class="info-cta-text">
+        <h2>HAI BISOGNO DI ALTRE INFORMAZIONI?</h2>
+        <p>Premi qui sotto per scrivermi direttamente su WhatsApp.</p>
+      </div>
+      <a href="https://wa.me/393487348278?text=Buongiorno%20Sofia%2C%20ho%20visto%20il%20sito%20e%20vorrei%20chiedere%20maggiori%20informazioni%20sui%20percorsi" target="_blank" rel="noopener" class="btn btn-primary">Fammi una domanda</a>
+    </div>
+  </div>
+</div>
 
 <!-- CONTATTI -->
 <section class="contact" id="contatti">

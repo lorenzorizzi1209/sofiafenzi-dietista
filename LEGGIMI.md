@@ -1,39 +1,32 @@
-# Sito Dietista — clone stilistico
+# Sito Dietista — Sofia Fenzi
 
-Sito statico (HTML/CSS/JS) con **gli stessi testi, sezioni e box del sito di
-Lorenzo**, ma con una **veste grafica premium bianco + verde scuro** e
-un'ottimizzazione mobile più spinta. I contenuti verranno modificati in seguito.
+Sito statico (HTML/CSS/JS) a **pagina unica**, in stile premium bianco + verde
+scuro (font Cormorant Garamond + Inter), ottimizzato per mobile.
 
 ## File
 
 | File | Contenuto |
 |------|-----------|
-| `index.html` | Home: hero, chi sono, servizi, FAQ, contatti |
-| `offerta.html` | Percorsi e costi: metodo, 5 fasi, visite singole, pacchetti, CTA |
+| `index.html` | Tutto il sito: hero (foto + nome), Chi Sono, Servizi, Come Funziona, Cosa comprende, Costi e Pacchetti, fascia di prenotazione, FAQ, box "altre informazioni", Contatti |
+| `offerta.html` | Solo reindirizzamento a `index.html#costi` (e `#faq`) per i vecchi link |
 | `cookie-policy.html` | Cookie policy (GDPR) |
-| `style.css` | Stile: palette bianco/crema + verde scuro, font Cormorant Garamond + Inter |
-| `script.js` | Menu mobile, accordion FAQ, animazioni, banner cookie + analytics |
-| `images/` | Foto (vedi `images/LEGGIMI.txt`) |
+| `style.css` | Stile del sito |
+| `script.js` | Menu mobile, accordion FAQ, animazioni, banner cookie + Google Analytics (si attiva solo dopo il consenso) |
+| `images/` | Foto e logo (vedi `images/LEGGIMI.txt`) |
 
-## Cosa è stato cambiato rispetto all'originale
+## Note
 
-- **Solo grafica**: colori (bianco/verde scuro), tipografia (titoli serif),
-  spaziature, bordi sottili al posto delle ombre marcate, logo testuale.
-- I **testi sono identici** all'originale (compresi nome, recapiti, prezzi e link
-  WhatsApp di Lorenzo): sono segnaposto da sostituire quando deciderai i contenuti
-  della nuova dietista.
-- **Analytics disattivati**: in `script.js` `GA_MEASUREMENT_ID` e
-  `META_PIXEL_ID` sono vuoti (non sono stati copiati quelli di Lorenzo). Il sito
-  e il banner cookie funzionano comunque; inserisci gli ID reali quando li hai.
-- **Mobile**: breakpoint aggiuntivi a 980 / 880 / 600 / 380 px, hamburger 44px,
-  hero e sezioni con padding ridotto, statistiche in riga, pulsanti full-width,
-  timeline delle 5 fasi ricompattata, banner cookie a tutta larghezza.
+- Menu a ancore: Home, Chi Sono, Servizi, Come Funziona, FAQ, Contatti e il pulsante
+  "Percorsi e Costi" (`#costi`).
+- Analytics: `GA_MEASUREMENT_ID` in `script.js`. L'evento `view_offer_page` parte
+  una sola volta quando il visitatore arriva alla sezione Costi.
+- Prestazioni: foto e logo in WebP leggero, navbar senza `backdrop-filter`.
 
 ## Foto
 
-- `images/logo.jpg` → logo "SF" in navbar (link alla home).
-- `images/foto-profilo.png` → ritratto Sofia Fenzi (sezione "Chi Sono"), PNG con
-  sfondo trasparente su fondo verde scuro.
+- `images/logo-sm.webp` → logo "SF" in navbar (originale: `images/logo.jpg`).
+- `images/foto-profilo.webp` → ritratto nella hero (originale: `images/foto-profilo.png`,
+  PNG con sfondo trasparente). Se cambi la foto, rigenera il WebP con lo stesso nome.
 
 ## Pubblicazione
 

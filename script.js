@@ -51,9 +51,10 @@ revealEls.forEach(el => observer.observe(el));
 const GA_MEASUREMENT_ID = 'G-D03G6FQD9G';
 const META_PIXEL_ID = '';     // es. '000000000000000'
 
-// Nomi degli eventi inviati a Google Analytics
-const GA_EVENT_HOME = 'Sofia Fenzi | Home';     // quando qualcuno arriva sul sito
-const GA_EVENT_PREZZI = 'Sofia Fenzi | Prezzi'; // quando vengono visualizzati i box dei prezzi
+// Titoli di pagina inviati a Google Analytics. I nomi degli eventi di GA non ammettono
+// spazi o "|", quindi i due momenti sono tracciati come page_view con un titolo dedicato.
+const GA_TITLE_HOME = 'Sofia Fenzi | Home';     // quando qualcuno arriva sul sito
+const GA_TITLE_PREZZI = 'Sofia Fenzi | Prezzi'; // quando vengono visualizzati i box dei prezzi
 
 // Solo i pulsanti WhatsApp ("Scrivimi", "Fammi una domanda") contano come contatto
 function trackButtonClicks() {
@@ -84,7 +85,8 @@ function loadAnalytics() {
     function gtag() { window.dataLayer.push(arguments); }
     window.gtag = gtag;
     gtag('js', new Date());
-    gtag('config', GA_MEASUREMENT_ID);
+    // Le visualizzazioni vengono inviate a mano, con i titoli dedicati qui sotto
+    gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
   }
 
   if (META_PIXEL_ID) {
@@ -102,18 +104,23 @@ function loadAnalytics() {
     window.fbq('track', 'PageView');
   }
 
-  // Evento 1: arrivo sul sito (solo nella pagina principale)
-  if (window.gtag && document.getElementById('hero')) {
-    window.gtag('event', GA_EVENT_HOME);
+  // Visualizzazione 1: arrivo sul sito. Nella pagina principale ha il titolo "Home";
+  // nelle altre pagine (es. cookie policy) resta il titolo normale della pagina
+  if (window.gtag) {
+    if (document.getElementById('hero')) {
+      window.gtag('event', 'page_view', { page_title: GA_TITLE_HOME });
+    } else {
+      window.gtag('event', 'page_view');
+    }
   }
 
-  // Evento 2: visualizzazione dei box con i prezzi (una sola volta per visita)
+  // Visualizzazione 2: box con i prezzi (una sola volta per visita)
   const priceBoxes = document.querySelector('.price-cards');
   if (priceBoxes) {
     const pricingObserver = new IntersectionObserver((entries) => {
       if (entries.some(e => e.isIntersecting)) {
         pricingObserver.disconnect();
-        if (window.gtag) window.gtag('event', GA_EVENT_PREZZI);
+        if (window.gtag) window.gtag('event', 'page_view', { page_title: GA_TITLE_PREZZI });
         if (window.fbq) window.fbq('track', 'ViewContent', { content_name: 'Percorsi e Costi' });
       }
     }, { threshold: 0.25 });
@@ -123,27 +130,79 @@ function loadAnalytics() {
   trackButtonClicks();
 }
 
+// Versione della scelta sui cookie. Per far rifare la scelta a tutti i visitatori
+// basta aumentare il numero: le scelte salvate con versioni precedenti vengono ignorate.
+const CONSENT_VERSION = 2;
+const CONSENT_KEY = 'cookie_consent_v' + CONSENT_VERSION;
+const LEGACY_CONSENT_KEYS = ['cookie_consent'];
+
+// La memoria del browser può non essere disponibile (modalità privata, blocchi):
+// in quel caso il banner deve comunque comparire e funzionare per la visita in corso
+function readConsent() {
+  try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+}
+
+function saveConsent(value) {
+  try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* scelta valida solo per questa visita */ }
+}
+
+function clearSavedConsent() {
+  try {
+    localStorage.removeItem(CONSENT_KEY);
+    LEGACY_CONSENT_KEYS.forEach(key => localStorage.removeItem(key));
+  } catch (e) { /* niente da rimuovere */ }
+}
+
+// Cancella i cookie di misurazione (Google Analytics, Meta) rimasti da una scelta precedente.
+// Non deve mai bloccare il banner: alcuni browser integrati (es. Instagram) possono vietare
+// l'accesso a document.cookie, quindi tutto è in try/catch
+function clearTrackingCookies() {
+  try {
+    const names = document.cookie.split(';')
+      .map(c => c.split('=')[0].trim())
+      .filter(n => n === '_ga' || n.indexOf('_ga_') === 0 || n === '_gid' || n === '_gat' || n === '_fbp' || n === '_fbc');
+    if (!names.length) return;
+
+    const host = location.hostname;
+    const parts = host.split('.');
+    const domains = [host, '.' + host];
+    if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+
+    names.forEach(name => {
+      const expired = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      document.cookie = expired;
+      domains.forEach(d => { document.cookie = expired + '; domain=' + d; });
+    });
+  } catch (e) { /* accesso ai cookie non consentito: niente da cancellare */ }
+}
+
 const cookieBanner = document.getElementById('cookieBanner');
 if (cookieBanner) {
   const cookieAccept = document.getElementById('cookieAccept');
   const cookieReject = document.getElementById('cookieReject');
-  const consent = localStorage.getItem('cookie_consent');
+  const consent = readConsent();
 
+  // Il banner compare finché l'utente non ha scelto: nessuna scelta automatica
   if (consent === 'accepted') {
-    loadAnalytics();
-  } else if (consent !== 'rejected') {
-    cookieBanner.classList.add('show');
+    try { loadAnalytics(); } catch (e) { /* un errore del tracciamento non deve bloccare il sito */ }
+  } else {
+    // prima si mostra il banner, poi si fa pulizia: un errore nella pulizia non può nasconderlo
+    if (consent !== 'rejected') {
+      cookieBanner.classList.add('show');
+    }
+    clearTrackingCookies();
   }
 
   cookieAccept.addEventListener('click', () => {
-    localStorage.setItem('cookie_consent', 'accepted');
+    saveConsent('accepted');
     cookieBanner.classList.remove('show');
-    loadAnalytics();
+    try { loadAnalytics(); } catch (e) { /* un errore del tracciamento non deve bloccare il sito */ }
   });
 
   cookieReject.addEventListener('click', () => {
-    localStorage.setItem('cookie_consent', 'rejected');
+    saveConsent('rejected');
     cookieBanner.classList.remove('show');
+    clearTrackingCookies();
   });
 }
 
@@ -151,7 +210,8 @@ if (cookieBanner) {
 document.querySelectorAll('.cookie-preferences-link').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    localStorage.removeItem('cookie_consent');
+    clearSavedConsent();
+    clearTrackingCookies();
     location.reload();
   });
 });

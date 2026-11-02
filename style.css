@@ -583,7 +583,7 @@ section {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 600px;
+  max-height: 900px;
   padding: 0 4px 28px;
 }
 
@@ -1199,6 +1199,129 @@ footer span {
 
 .offer-cta .btn-primary:hover {
   background: var(--cream);
+}
+
+/* a capo del titolo solo sugli schermi stretti (evita una parola da sola sulla seconda riga) */
+.br-narrow {
+  display: none;
+}
+
+@media (max-width: 440px) {
+  .br-narrow {
+    display: inline;
+  }
+}
+
+/* Garanzia nel blocco di prenotazione */
+.guarantee {
+  max-width: 440px;
+  margin: 28px auto 30px;
+  padding: 26px 22px 12px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+}
+
+.guarantee-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.guarantee-badge {
+  flex: 0 0 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.guarantee-badge svg {
+  width: 24px;
+  height: 24px;
+}
+
+.guarantee-eyebrow {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #cfe3d5;
+}
+
+.guarantee-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.guarantee-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.guarantee-list li {
+  display: flex;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.guarantee-list svg {
+  flex: 0 0 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+/* il testo della garanzia è un link alla FAQ corrispondente */
+.guarantee-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.guarantee-link strong {
+  text-decoration: underline;
+  text-decoration-color: rgba(207, 227, 213, 0.6);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.guarantee-link:hover strong,
+.guarantee-link:focus-visible strong {
+  color: #cfe3d5;
+}
+
+.guarantee-list strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.guarantee-list span {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+/* il selettore è più specifico di `.offer-cta p`, altrimenti ne eredita il margine */
+.offer-cta .cta-reassure {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 /* Box "altre informazioni": compatto, diverso dalla fascia di prenotazione */

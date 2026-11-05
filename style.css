@@ -1324,6 +1324,254 @@ footer span {
   color: rgba(255, 255, 255, 0.78);
 }
 
+/* ===== Promozione ===== */
+.promo {
+  padding: 96px 0 84px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(60, 109, 83, 0.55), transparent 65%),
+    linear-gradient(180deg, var(--green-900) 0%, #14291e 100%);
+}
+
+/* card chiara su fondo scuro, con bordo oro: è l'elemento che si nota di più nella pagina */
+.promo-box {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 32px 44px;
+  text-align: center;
+  background: #fff;
+  border: 2px solid #c9a24a;
+  border-radius: 6px;
+  box-shadow: 0 0 0 6px rgba(201, 162, 74, 0.18), 0 28px 60px rgba(0, 0, 0, 0.4);
+}
+
+.promo .section-title {
+  margin-bottom: 14px;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 600;
+  color: var(--green-900);
+}
+
+.promo-lead {
+  max-width: 520px;
+  margin: 0 auto 22px;
+  color: var(--muted);
+}
+
+/* valore del regalo: prezzo barrato + GRATIS */
+.promo-value {
+  display: inline-block;
+  margin: 0 auto 34px;
+  padding: 16px 38px 18px;
+  background: var(--green-50);
+  border: 1px dashed #c9a24a;
+  border-radius: 4px;
+}
+
+.promo-value-name {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--green-700);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.promo-value-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  line-height: 1.1;
+  font-family: var(--serif);
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+}
+
+.promo-value-price s {
+  color: var(--muted);
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-decoration-color: #b3261e;
+  text-decoration-thickness: 2px;
+}
+
+.promo-value-price strong {
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+/* timer: cifre verdi su fondo bianco, divise da una sottile linea verticale */
+.promo-timer {
+  margin-bottom: 34px;
+}
+
+.promo-timer-title {
+  margin: 0 0 12px;
+  color: #8a6414;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.promo-countdown {
+  --promo-gap: 20px;
+  --promo-num: 3.4rem;
+  display: flex;
+  justify-content: center;
+  gap: var(--promo-gap);
+}
+
+.promo-unit {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 130px;
+}
+
+.promo-unit + .promo-unit::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--promo-gap) / -2);
+  top: 10%;
+  bottom: 6%;
+  width: 1px;
+  background: rgba(28, 58, 43, 0.22);
+}
+
+.promo-num {
+  display: block;
+  color: var(--green-700);
+  font-family: var(--serif);
+  font-size: var(--promo-num);
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1;
+}
+
+.promo-unit-label {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* animazione: a ogni secondo la cifra che cambia scende dall'alto e i secondi brillano */
+.promo-num.tick {
+  animation: promoDigit 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.promo-unit:last-child {
+  animation: promoPulse 1s ease-in-out infinite;
+}
+
+@keyframes promoDigit {
+  from { transform: translateY(-45%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes promoPulse {
+  0%, 100% { text-shadow: 0 0 0 rgba(60, 109, 83, 0); }
+  50% { text-shadow: 0 0 18px rgba(60, 109, 83, 0.55); }
+}
+
+/* pulsante: pieno e grande, fermo */
+.promo .btn-primary {
+  padding: 18px 46px;
+  font-size: 0.95rem;
+  background: var(--green-900);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(28, 58, 43, 0.35);
+}
+
+.promo .btn-primary:hover {
+  background: var(--green-800);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-num.tick,
+  .promo-unit:last-child {
+    animation: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo {
+    padding: 72px 0 60px;
+  }
+  .promo-box {
+    padding: 40px 14px 32px;
+  }
+  .promo .section-title {
+    font-size: 2.15rem;
+    line-height: 1.18;
+    margin-bottom: 16px;
+  }
+  .promo-lead {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  .promo-value {
+    margin-bottom: 28px;
+    padding: 14px 22px 16px;
+  }
+  .promo-value-price {
+    gap: 12px;
+  }
+  .promo-value-price s {
+    font-size: 1.9rem;
+  }
+  .promo-value-price strong {
+    font-size: 2.5rem;
+  }
+  .promo-timer {
+    margin-bottom: 28px;
+  }
+  .promo-countdown {
+    --promo-gap: 12px;
+    --promo-num: 2.7rem;
+  }
+  .promo-unit-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.5px;
+  }
+  .promo .btn {
+    display: block;
+    padding: 18px 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .promo-box {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .promo-countdown {
+    --promo-gap: 10px;
+    --promo-num: 2.3rem;
+  }
+  .promo-value {
+    padding: 12px 14px 14px;
+  }
+  .promo-value-price s {
+    font-size: 1.6rem;
+  }
+  .promo-value-price strong {
+    font-size: 2.1rem;
+  }
+  .promo .btn {
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+  }
+}
+
 /* Box "altre informazioni": compatto, diverso dalla fascia di prenotazione */
 .info-cta {
   padding: 20px 0 80px;

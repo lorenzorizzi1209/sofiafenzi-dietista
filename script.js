@@ -239,3 +239,40 @@ document.querySelectorAll('.cookie-preferences-link').forEach(link => {
     location.reload();
   });
 });
+
+// Promozione: conto alla rovescia (la sezione si nasconde da sola alla scadenza)
+(function () {
+  const promo = document.getElementById('promo');
+  if (!promo) return;
+  const deadline = new Date(promo.dataset.deadline).getTime();
+  const cells = {};
+  promo.querySelectorAll('[data-unit]').forEach(el => { cells[el.dataset.unit] = el; });
+  let timerId;
+
+  function tick() {
+    const left = deadline - Date.now();
+    if (isNaN(deadline) || left <= 0) {
+      promo.style.display = 'none';
+      clearInterval(timerId);
+      return;
+    }
+    const s = Math.floor(left / 1000);
+    const pad = n => String(n).padStart(2, '0');
+    setCell(cells.days, pad(Math.floor(s / 86400)));
+    setCell(cells.hours, pad(Math.floor(s % 86400 / 3600)));
+    setCell(cells.minutes, pad(Math.floor(s % 3600 / 60)));
+    setCell(cells.seconds, pad(s % 60));
+  }
+
+  // Aggiorna la cifra solo se cambia e ne riavvia l'animazione di comparsa
+  function setCell(el, value) {
+    if (el.textContent === value) return;
+    el.textContent = value;
+    el.classList.remove('tick');
+    void el.offsetWidth;
+    el.classList.add('tick');
+  }
+
+  tick();
+  timerId = setInterval(tick, 1000);
+})();

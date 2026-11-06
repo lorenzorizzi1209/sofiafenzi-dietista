@@ -784,6 +784,8 @@ footer span {
   font-family: var(--serif);
   font-size: 1.5rem;
   font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
 }
 
 /* invito a scorrere: sparisce appena la persona prova a girare il carosello */
@@ -1140,8 +1142,17 @@ footer span {
   .inc-carousel {
     --inc-pad: 18px;
   }
+  .offer-content.includes .section-title {
+    margin-bottom: 16px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+  }
   .offer-content.includes .section-subtitle {
-    margin-bottom: 26px;
+    margin-bottom: 30px;
+    color: var(--ink);
+    font-size: 1.05rem;
+    line-height: 1.55;
   }
   .inc-card {
     padding: 26px 20px 20px;
@@ -1159,14 +1170,24 @@ footer span {
     gap: 4px 10px;
   }
   .inc-count {
-    font-size: 0.88rem;
+    color: var(--green-900);
+    font-size: 1rem;
+    font-weight: 600;
   }
   .inc-count strong {
-    font-size: 1.3rem;
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: -3px;
   }
   .inc-hint {
-    font-size: 0.68rem;
-    letter-spacing: 1px;
+    font-size: 0.62rem;
+    letter-spacing: 0.6px;
+    gap: 4px;
+  }
+  .inc-hint svg {
+    width: 15px;
+    height: 15px;
   }
   .inc-track {
     padding-bottom: 20px;

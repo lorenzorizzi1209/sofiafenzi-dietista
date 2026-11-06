@@ -2276,3 +2276,24 @@ footer span {
     scroll-behavior: auto;
   }
 }
+
+/* Mobile: tutti i titoli di sezione hanno la stessa dimensione importante */
+@media (max-width: 600px) {
+  .section-title,
+  .offer-cta h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  .promo .section-title {
+    font-size: 2.5rem;
+    line-height: 1.15;
+  }
+}
+
+/* schermi molto stretti: il titolo della promozione resta nel box in tre righe */
+@media (max-width: 340px) {
+  .promo .section-title {
+    font-size: 2.15rem;
+  }
+}

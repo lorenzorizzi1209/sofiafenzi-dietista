@@ -902,7 +902,7 @@ footer span {
   position: absolute;
   top: 12px;
   right: 18px;
-  color: rgba(28, 58, 43, 0.08);
+  color: rgba(28, 58, 43, 0.16);
   font-family: var(--serif);
   font-size: 3rem;
   font-weight: 600;
@@ -954,7 +954,7 @@ footer span {
 }
 
 .inc-card-extra .inc-num {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.18);
 }
 
 .inc-card-extra .inc-icon {

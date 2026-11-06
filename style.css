@@ -748,51 +748,6 @@ footer span {
   background: var(--cream);
 }
 
-/* Cosa comprende il percorso */
-.includes-list {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 8px 32px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  box-shadow: var(--shadow-md);
-}
-
-.includes-list li {
-  position: relative;
-  padding: 16px 0 16px 32px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.includes-list li:last-child {
-  border-bottom: none;
-}
-
-.includes-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 16px;
-  color: var(--green-600);
-  font-weight: 700;
-}
-
-.inc-title {
-  display: block;
-  margin-bottom: 3px;
-  color: var(--green-900);
-  font-size: 1.05rem;
-  font-weight: 600;
-}
-
-.inc-desc {
-  display: block;
-  line-height: 1.5;
-}
-
 /* titolo e frase sotto più vicini tra loro */
 .offer-content.includes .section-title {
   margin-bottom: 14px;
@@ -802,55 +757,440 @@ footer span {
   margin-bottom: 40px;
 }
 
-/* Extra incluso: card a parte sotto l'elenco */
-.includes-extra {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-  max-width: 700px;
-  margin: 22px auto 0;
-  padding: 24px 28px;
-  background: linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 100%);
-  border: 1px solid var(--green-600);
-  border-radius: 4px;
-  box-shadow: 0 16px 38px rgba(28, 58, 43, 0.25);
+/* Cosa comprende il percorso: carosello orizzontale */
+.inc-carousel {
+  --inc-pad: 24px; /* come il padding laterale di .container */
+  margin: 0 calc(var(--inc-pad) * -1);
 }
 
-.includes-extra-icon {
-  flex-shrink: 0;
+.inc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding: 0 var(--inc-pad);
+  margin-bottom: 14px;
+}
+
+.inc-count {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.inc-count strong {
+  margin-right: 2px;
+  color: var(--green-700);
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* invito a scorrere: sparisce appena la persona prova a girare il carosello */
+.inc-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: opacity 0.4s ease;
+}
+
+.inc-hint svg {
+  animation: incArrow 1.4s ease-in-out infinite;
+}
+
+.inc-carousel.touched .inc-hint {
+  opacity: 0;
+}
+
+@keyframes incArrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+.inc-viewport {
+  position: relative;
+}
+
+/* sfumature ai lati: la card tagliata suggerisce che c'è altro da vedere */
+.inc-viewport::before,
+.inc-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 44px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.inc-viewport::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--cream), rgba(241, 238, 229, 0));
+}
+
+.inc-viewport::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--cream), rgba(241, 238, 229, 0));
+}
+
+.inc-viewport.can-left::before,
+.inc-viewport.can-right::after {
+  opacity: 1;
+}
+
+.inc-track {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  padding: 8px var(--inc-pad) 26px;
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 var(--inc-pad);
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  user-select: none;
+  cursor: grab;
+}
+
+.inc-track::-webkit-scrollbar {
+  display: none;
+}
+
+.inc-track.dragging {
+  cursor: grabbing;
+}
+
+.inc-track:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+.inc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 clamp(262px, 80vw, 330px);
+  padding: 32px 24px 24px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: linear-gradient(165deg, var(--white), var(--green-50));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+@media (hover: hover) {
+  .inc-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--green-600);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.inc-num {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  color: rgba(28, 58, 43, 0.08);
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.inc-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, var(--green-600), var(--green-800));
+  box-shadow: 0 6px 14px rgba(28, 58, 43, 0.25);
 }
 
-.includes-extra-label {
+.inc-label {
   display: block;
-  margin-bottom: 4px;
-  color: #cfe3d5;
+  margin-bottom: 8px;
+  color: var(--green-600);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.includes-extra h3 {
-  margin-bottom: 6px;
+.inc-title {
+  margin-bottom: 8px;
+  color: var(--green-900);
   font-family: var(--serif);
-  font-size: 1.4rem;
+  font-size: 1.45rem;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.25;
+}
+
+.inc-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+/* l'extra incluso si distingue dalle altre card */
+.inc-card-extra {
+  background: linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 100%);
+  border-color: var(--green-600);
+  box-shadow: 0 8px 18px rgba(28, 58, 43, 0.28);
+}
+
+.inc-card-extra .inc-num {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.inc-card-extra .inc-icon {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+.inc-card-extra .inc-label {
+  color: #cfe3d5;
+}
+
+.inc-card-extra .inc-title {
   color: #fff;
 }
 
-.includes-extra p {
+.inc-card-extra .inc-desc {
   color: rgba(255, 255, 255, 0.88);
-  font-size: 0.95rem;
-  line-height: 1.55;
+}
+
+/* cosa si ottiene, in punti */
+.inc-points {
+  margin: 18px 0 20px;
+  padding-top: 16px;
+  list-style: none;
+  border-top: 1px solid var(--line-soft);
+}
+
+.inc-points li {
+  position: relative;
+  padding: 0 0 9px 26px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.inc-points li:last-child {
+  padding-bottom: 0;
+}
+
+.inc-points li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  background: var(--green-600);
+  border-radius: 50%;
+}
+
+.inc-card-extra .inc-points {
+  border-top-color: rgba(255, 255, 255, 0.22);
+}
+
+.inc-card-extra .inc-points li {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.inc-card-extra .inc-points li::before {
+  color: var(--green-900);
+  background: #cfe3d5;
+}
+
+/* il beneficio finale, sempre in fondo alla card */
+.inc-result {
+  margin-top: auto;
+  padding: 12px 14px;
+  color: var(--green-900);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  background: var(--green-50);
+  border-left: 3px solid var(--green-600);
+  border-radius: 0 4px 4px 0;
+}
+
+.inc-result span {
+  display: block;
+  margin-bottom: 2px;
+  color: #8a6414;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.inc-card-extra .inc-result {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-left-color: #cfe3d5;
+}
+
+.inc-card-extra .inc-result span {
+  color: #cfe3d5;
+}
+
+/* piccolo movimento all'ingresso nella pagina, una volta sola */
+.inc-carousel.nudge .inc-card {
+  animation: incNudge 1.3s ease-in-out;
+}
+
+@keyframes incNudge {
+  0%, 100% { translate: 0 0; }
+  40%, 60% { translate: -56px 0; }
+}
+
+.inc-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 var(--inc-pad);
+}
+
+.inc-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  color: var(--green-900);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.inc-arrow:hover:not(:disabled) {
+  color: #fff;
+  background: var(--green-700);
+  border-color: var(--green-700);
+}
+
+.inc-arrow:focus-visible {
+  outline: 2px solid var(--green-600);
+  outline-offset: 3px;
+}
+
+.inc-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.inc-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inc-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background: rgba(28, 58, 43, 0.25);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.inc-dots button.active {
+  width: 26px;
+  background: var(--green-700);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inc-hint svg,
+  .inc-carousel.nudge .inc-card {
+    animation: none;
+  }
+}
+
+/* Mobile: una swipe = una card, sezione più compatta, comandi facili da toccare */
+@media (max-width: 600px) {
+  .inc-carousel {
+    --inc-pad: 18px;
+  }
+  .offer-content.includes .section-subtitle {
+    margin-bottom: 26px;
+  }
+  .inc-card {
+    padding: 26px 20px 20px;
+    scroll-snap-stop: always;
+  }
+  .inc-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 16px;
+  }
+  .inc-title {
+    font-size: 1.35rem;
+  }
+  .inc-top {
+    gap: 4px 10px;
+  }
+  .inc-count {
+    font-size: 0.88rem;
+  }
+  .inc-count strong {
+    font-size: 1.3rem;
+  }
+  .inc-hint {
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+  }
+  .inc-track {
+    padding-bottom: 20px;
+  }
+  .inc-dots button {
+    position: relative;
+  }
+  .inc-dots button::after {
+    content: "";
+    position: absolute;
+    inset: -14px -4px; /* area di tocco più grande */
+  }
+}
+
+@media (max-width: 400px) {
+  .inc-controls {
+    gap: 12px;
+  }
+  .inc-dots {
+    gap: 6px;
+  }
+  .inc-dots button.active {
+    width: 20px;
+  }
 }
 
 /* Costi e pacchetti: due card con righe nome + prezzo */
@@ -939,16 +1279,6 @@ footer span {
   .price-card {
     padding: 28px 20px 10px;
   }
-  .includes-list {
-    padding: 4px 22px;
-  }
-  .includes-extra {
-    padding: 22px 20px;
-    gap: 14px;
-  }
-  .includes-extra-icon {
-    width: 42px;
-    height: 42px;
   }
 }
 

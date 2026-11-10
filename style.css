@@ -2337,7 +2337,7 @@ footer span {
 .journey-no {
   margin-bottom: 12px;
   color: var(--green-700);
-  font-size: min(0.9em, 5.4vw);
+  font-size: min(1em, 6.4vw);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -2347,7 +2347,7 @@ footer span {
 }
 
 .journey-yes {
-  font-size: min(1.05em, 7.4vw);
+  font-size: min(1.2em, 8.8vw);
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }

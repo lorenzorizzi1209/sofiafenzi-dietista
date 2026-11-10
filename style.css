@@ -397,7 +397,7 @@ section {
 .section-title {
   text-align: center;
   font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.2rem, 4.4vw, 3.3rem);
   font-weight: 500;
   color: var(--green-900);
   margin-bottom: 18px;
@@ -459,7 +459,7 @@ section {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 20px;
 }
 
 .service-card {
@@ -467,7 +467,7 @@ section {
   background: var(--white);
   border: 1px solid var(--line-soft);
   border-radius: 3px;
-  padding: 40px 30px;
+  padding: 28px 24px;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -475,7 +475,7 @@ section {
 }
 
 .service-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: var(--line);
   box-shadow: var(--shadow-md);
 }
@@ -483,13 +483,13 @@ section {
 .service-header {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
 .service-icon {
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -501,7 +501,7 @@ section {
 
 .service-card h3 {
   font-family: var(--serif);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--green-900);
   line-height: 1.2;
@@ -514,14 +514,24 @@ section {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.3px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .service-card p {
   color: var(--muted);
-  font-size: 0.95rem;
-  padding-top: 18px;
+  font-size: 0.9rem;
+  padding-top: 12px;
   border-top: 1px solid var(--line-soft);
+}
+
+.service-card p {
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.service-icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .services-cta {
@@ -712,7 +722,7 @@ footer span {
 
 .offer-block h2 {
   font-family: var(--serif);
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 500;
   color: var(--green-900);
   margin-bottom: 18px;
@@ -1531,7 +1541,7 @@ footer span {
 
 .offer-cta h2 {
   font-family: var(--serif);
-  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.9rem, 3.9vw, 2.9rem);
   font-weight: 500;
   color: #fff;
   margin-bottom: 14px;
@@ -1698,7 +1708,7 @@ footer span {
 
 .promo .section-title {
   margin-bottom: 14px;
-  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-size: clamp(2.1rem, 4.4vw, 3rem);
   font-weight: 600;
   color: var(--green-900);
 }
@@ -2039,7 +2049,7 @@ footer span {
     margin-bottom: 60px;
   }
   .offer-block h2 {
-    font-size: 1.65rem;
+    font-size: 1.8rem;
   }
   .offer-plans,
   .offer-plans-2 {
@@ -2103,7 +2113,7 @@ footer span {
     grid-template-columns: 1fr;
   }
   .offer-block h2 {
-    font-size: 1.45rem;
+    font-size: 1.6rem;
     gap: 10px;
   }
   .offer-block h2::before {
@@ -2285,15 +2295,282 @@ footer span {
     font-weight: 600;
     line-height: 1.15;
   }
+  /* la promozione ha un titolo lungo: la dimensione segue la larghezza dello schermo e resta su due righe */
   .promo .section-title {
-    font-size: 2.5rem;
-    line-height: 1.15;
+    font-size: min(2rem, 7.4vw);
+    line-height: 1.2;
+    text-wrap: balance;
   }
 }
 
-/* schermi molto stretti: il titolo della promozione resta nel box in tre righe */
-@media (max-width: 340px) {
-  .promo .section-title {
-    font-size: 2.15rem;
+/* Il mio metodo: meno testo, spazi più stretti */
+#come-funziona .offer-block {
+  margin-bottom: 56px;
+}
+
+#come-funziona .process-steps {
+  gap: 30px;
+}
+
+#come-funziona .section-title {
+  margin-bottom: 30px;
+}
+
+/* ===== Risultato: percorso curvo che arriva al traguardo ===== */
+.journey {
+  padding: 90px 0 100px;
+  background: var(--white);
+}
+
+.journey .section-title {
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.journey .section-title span {
+  display: block;
+  text-wrap: balance;
+}
+
+/* titolo in due frasi: la prima più piccola, la seconda grande e in maiuscolo;
+   le dimensioni seguono la larghezza dello schermo, così su mobile sono sempre 1 + 2 righe */
+.journey-no {
+  margin-bottom: 12px;
+  color: var(--green-700);
+  font-size: min(0.9em, 5.4vw);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.journey .section-title .journey-no {
+  text-wrap: nowrap; /* serve: text-wrap: balance sopra altrimenti annulla il nowrap */
+}
+
+.journey-yes {
+  font-size: min(1.05em, 7.4vw);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.journey .section-subtitle {
+  margin-bottom: 56px;
+}
+
+.journey-map {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.journey-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.journey-track {
+  fill: none;
+  stroke: rgba(28, 58, 43, 0.25);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 11;
+}
+
+.journey-progress {
+  fill: none;
+  stroke: var(--green-600);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 4px rgba(60, 109, 83, 0.45));
+}
+
+.journey-measure {
+  fill: none;
+  stroke: none;
+}
+
+.journey-steps {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+}
+
+.journey-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+  margin-bottom: 76px;
+}
+
+.journey-node {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1;
+  background: var(--white);
+  border: 2px solid rgba(28, 58, 43, 0.28);
+  border-radius: 50%;
+  transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.journey-step:nth-child(even) .journey-node {
+  left: auto;
+  right: 0;
+}
+
+.journey-node.reached {
+  color: #fff;
+  background: linear-gradient(135deg, var(--green-600), var(--green-800));
+  border-color: var(--green-600);
+  box-shadow: 0 0 0 6px rgba(60, 109, 83, 0.14), 0 6px 16px rgba(28, 58, 43, 0.28);
+}
+
+/* i passi alternano sinistra e destra: i nodi sono sul bordo, il testo dal lato opposto */
+.journey-text {
+  max-width: 420px;
+  margin-left: 78px;
+}
+
+.journey-step:nth-child(even) .journey-text {
+  margin-left: auto;
+  margin-right: 78px;
+  text-align: right;
+}
+
+.journey-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--green-600);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.journey-phrase {
+  color: var(--green-900);
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* il traguardo: nodo più grande e riquadro in evidenza, al centro */
+.journey-step.journey-step-result {
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+.journey-step.journey-step-result:nth-child(n) .journey-node {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  width: 72px;
+  height: 72px;
+}
+
+.journey-step.journey-step-result:nth-child(n) .journey-text {
+  max-width: 480px;
+  margin: 22px auto 0;
+  padding: 24px 24px 26px;
+  text-align: center;
+  background: linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 100%);
+  border: 1px solid var(--green-600);
+  border-radius: 6px;
+  box-shadow: 0 12px 28px rgba(28, 58, 43, 0.28);
+}
+
+.journey-step-result .journey-label {
+  color: #cfe3d5;
+}
+
+.journey-step-result .journey-phrase {
+  color: #fff;
+  font-size: 1.65rem;
+}
+
+.journey-step-result .journey-node.reached {
+  animation: journeyPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes journeyPulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(60, 109, 83, 0.16), 0 6px 16px rgba(28, 58, 43, 0.3); }
+  50% { box-shadow: 0 0 0 15px rgba(60, 109, 83, 0.06), 0 6px 22px rgba(60, 109, 83, 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-step-result .journey-node.reached {
+    animation: none;
+  }
+  .journey-node {
+    transition: none;
+  }
+}
+
+/* Mobile: più aria tra i punti, frasi un po' più piccole */
+@media (max-width: 600px) {
+  .journey {
+    padding: 84px 0 96px;
+  }
+  .journey .section-title {
+    margin-bottom: 12px; /* sottotitolo vicino al titolo, a distanza uguale a quella tra le due frasi */
+  }
+  .journey .section-subtitle {
+    margin-bottom: 64px;
+  }
+  .journey-step {
+    min-height: 76px;
+    margin-bottom: 112px;
+  }
+  .journey-node {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+  .journey-text {
+    margin-left: 72px;
+  }
+  .journey-step:nth-child(even) .journey-text {
+    margin-right: 72px;
+  }
+  .journey-label {
+    margin-bottom: 8px;
+  }
+  .journey-phrase {
+    font-size: 1.3rem;
+    line-height: 1.35;
+  }
+  .journey-step.journey-step-result:nth-child(n) .journey-node {
+    width: 64px;
+    height: 64px;
+  }
+  .journey-step.journey-step-result:nth-child(n) .journey-text {
+    margin-top: 30px;
+    padding: 24px 20px 26px;
+  }
+  .journey-step-result .journey-phrase {
+    font-size: 1.4rem;
   }
 }

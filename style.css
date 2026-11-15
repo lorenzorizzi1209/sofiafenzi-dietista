@@ -767,7 +767,11 @@ footer span {
   margin-bottom: 40px;
 }
 
-/* Cosa comprende il percorso: carosello orizzontale */
+/* Cosa comprende il percorso: carosello orizzontale con card snelle */
+html {
+  scrollbar-gutter: stable; /* evita il "salto" di lato quando lo scroll viene bloccato per un attimo (desktop) */
+}
+
 .inc-carousel {
   --inc-pad: 24px; /* come il padding laterale di .container */
   margin: 0 calc(var(--inc-pad) * -1);
@@ -784,30 +788,35 @@ footer span {
 }
 
 .inc-count {
-  color: var(--muted);
-  font-size: 0.95rem;
+  color: var(--green-900);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .inc-count strong {
   margin-right: 2px;
   color: var(--green-700);
   font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
+  font-weight: 700;
   font-variant-numeric: lining-nums;
   font-feature-settings: "lnum" 1;
 }
 
-/* invito a scorrere: sparisce appena la persona prova a girare il carosello */
+/* invito a scorrere: pillola colorata, sparisce appena la persona scorre davvero di lato */
 .inc-hint {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--green-700);
-  font-size: 0.75rem;
+  gap: 8px;
+  padding: 7px 12px 7px 14px;
+  color: #fff;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
+  background: var(--green-700);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(28, 58, 43, 0.25);
   transition: opacity 0.4s ease;
 }
 
@@ -891,8 +900,8 @@ footer span {
   position: relative;
   display: flex;
   flex-direction: column;
-  flex: 0 0 clamp(262px, 80vw, 330px);
-  padding: 32px 24px 24px;
+  flex: 0 0 clamp(262px, 78vw, 320px);
+  padding: 24px 22px 22px;
   overflow: hidden;
   scroll-snap-align: start;
   background: linear-gradient(165deg, var(--white), var(--green-50));
@@ -910,44 +919,23 @@ footer span {
   }
 }
 
-.inc-num {
-  position: absolute;
-  top: 12px;
-  right: 18px;
-  color: rgba(28, 58, 43, 0.16);
-  font-family: var(--serif);
-  font-size: 3rem;
-  font-weight: 600;
-  line-height: 1;
-}
-
 .inc-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
-  margin-bottom: 20px;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--green-600), var(--green-800));
   box-shadow: 0 6px 14px rgba(28, 58, 43, 0.25);
-}
-
-.inc-label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--green-600);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
 }
 
 .inc-title {
   margin-bottom: 8px;
   color: var(--green-900);
   font-family: var(--serif);
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.25;
 }
@@ -955,49 +943,20 @@ footer span {
 .inc-desc {
   color: var(--muted);
   font-size: 0.95rem;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
-/* l'extra incluso si distingue dalle altre card */
-.inc-card-extra {
-  background: linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 100%);
-  border-color: var(--green-600);
-  box-shadow: 0 8px 18px rgba(28, 58, 43, 0.28);
-}
-
-.inc-card-extra .inc-num {
-  color: rgba(255, 255, 255, 0.18);
-}
-
-.inc-card-extra .inc-icon {
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: none;
-}
-
-.inc-card-extra .inc-label {
-  color: #cfe3d5;
-}
-
-.inc-card-extra .inc-title {
-  color: #fff;
-}
-
-.inc-card-extra .inc-desc {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-/* cosa si ottiene, in punti */
+/* cosa è incluso, in punti */
 .inc-points {
-  margin: 18px 0 20px;
-  padding-top: 16px;
+  margin: 16px 0 0;
+  padding-top: 14px;
   list-style: none;
   border-top: 1px solid var(--line-soft);
 }
 
 .inc-points li {
   position: relative;
-  padding: 0 0 9px 26px;
+  padding: 0 0 8px 26px;
   color: var(--ink);
   font-size: 0.92rem;
   line-height: 1.4;
@@ -1023,6 +982,37 @@ footer span {
   border-radius: 50%;
 }
 
+/* l'extra incluso si distingue dalle altre card */
+.inc-card-extra {
+  background: linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 100%);
+  border-color: var(--green-600);
+  box-shadow: 0 8px 18px rgba(28, 58, 43, 0.28);
+}
+
+.inc-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #cfe3d5;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.inc-card-extra .inc-icon {
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+}
+
+.inc-card-extra .inc-title {
+  color: #fff;
+}
+
+.inc-card-extra .inc-desc {
+  color: rgba(255, 255, 255, 0.88);
+}
+
 .inc-card-extra .inc-points {
   border-top-color: rgba(255, 255, 255, 0.22);
 }
@@ -1034,39 +1024,6 @@ footer span {
 .inc-card-extra .inc-points li::before {
   color: var(--green-900);
   background: #cfe3d5;
-}
-
-/* il beneficio finale, sempre in fondo alla card */
-.inc-result {
-  margin-top: auto;
-  padding: 12px 14px;
-  color: var(--green-900);
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.4;
-  background: var(--green-50);
-  border-left: 3px solid var(--green-600);
-  border-radius: 0 4px 4px 0;
-}
-
-.inc-result span {
-  display: block;
-  margin-bottom: 2px;
-  color: #8a6414;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-
-.inc-card-extra .inc-result {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
-  border-left-color: #cfe3d5;
-}
-
-.inc-card-extra .inc-result span {
-  color: #cfe3d5;
 }
 
 /* piccolo movimento all'ingresso nella pagina, una volta sola */
@@ -1091,8 +1048,8 @@ footer span {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   padding: 0;
   color: var(--green-900);
   background: var(--white);
@@ -1102,10 +1059,17 @@ footer span {
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
-.inc-arrow:hover:not(:disabled) {
+/* "Avanti" piena di colore finché c'è altro da vedere */
+.inc-next:not(:disabled) {
   color: #fff;
   background: var(--green-700);
   border-color: var(--green-700);
+}
+
+.inc-arrow:hover:not(:disabled) {
+  color: #fff;
+  background: var(--green-800);
+  border-color: var(--green-800);
 }
 
 .inc-arrow:focus-visible {
@@ -1165,35 +1129,25 @@ footer span {
     line-height: 1.55;
   }
   .inc-card {
-    padding: 26px 20px 20px;
-    scroll-snap-stop: always;
-  }
-  .inc-icon {
-    width: 54px;
-    height: 54px;
-    margin-bottom: 16px;
+    padding: 20px 20px 22px;
+    scroll-snap-stop: always; /* una swipe = una card */
   }
   .inc-title {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
   .inc-top {
     gap: 4px 10px;
   }
   .inc-count {
-    color: var(--green-900);
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
   }
   .inc-count strong {
-    font-size: 1.9rem;
-    font-weight: 700;
-    line-height: 1;
-    vertical-align: -3px;
+    font-size: 1.5rem;
   }
   .inc-hint {
-    font-size: 0.62rem;
-    letter-spacing: 0.6px;
-    gap: 4px;
+    padding: 6px 10px 6px 12px;
+    font-size: 0.66rem;
+    letter-spacing: 0.8px;
   }
   .inc-hint svg {
     width: 15px;

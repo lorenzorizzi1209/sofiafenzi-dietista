@@ -935,8 +935,8 @@ html {
   margin-bottom: 8px;
   color: var(--green-900);
   font-family: var(--serif);
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.65rem;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -1133,7 +1133,7 @@ html {
     scroll-snap-stop: always; /* una swipe = una card */
   }
   .inc-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .inc-top {
     gap: 4px 10px;

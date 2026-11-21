@@ -946,8 +946,11 @@ footer span {
 .price-card {
   position: relative;
   padding: 34px 30px 12px;
-  background: var(--white);
-  border: 1px solid var(--line);
+  /* contorno sfumato: bordo trasparente con un gradiente verde dietro, così le card staccano dal fondo bianco */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--white), var(--white)) padding-box,
+    linear-gradient(135deg, var(--green-900) 0%, var(--green-600) 55%, #8fb09b 100%) border-box;
   border-radius: 4px;
   box-shadow: var(--shadow-md);
 }

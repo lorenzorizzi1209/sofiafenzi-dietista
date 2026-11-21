@@ -117,8 +117,10 @@ function loadAnalytics() {
     function gtag() { window.dataLayer.push(arguments); }
     window.gtag = gtag;
     gtag('js', new Date());
-    // Le visualizzazioni vengono inviate a mano, con i titoli dedicati qui sotto
-    gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
+    // Le visualizzazioni vengono inviate a mano, con i titoli dedicati qui sotto.
+    // page_title è il titolo di default: gli eventi automatici di Google (scroll, engagement, inizio sessione)
+    // finiscono sotto "Home" invece che sotto il titolo HTML della pagina ("Sofia Fenzi | Dietista")
+    gtag('config', GA_MEASUREMENT_ID, { send_page_view: false, page_title: GA_TITLE_HOME });
   }
 
   if (META_PIXEL_ID) {
@@ -142,7 +144,8 @@ function loadAnalytics() {
     if (document.getElementById('hero')) {
       window.gtag('event', 'page_view', { page_title: GA_TITLE_HOME });
     } else {
-      window.gtag('event', 'page_view');
+      // il titolo di default della config è "Home": qui si indica esplicitamente quello della pagina
+      window.gtag('event', 'page_view', { page_title: document.title });
     }
   }
 

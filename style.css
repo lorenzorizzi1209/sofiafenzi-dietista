@@ -593,8 +593,42 @@ section {
 }
 
 .faq-item.active .faq-answer {
-  max-height: 900px;
+  max-height: 1600px;
   padding: 0 4px 28px;
+}
+
+.faq-answer p {
+  margin-bottom: 12px;
+}
+
+.faq-steps,
+.faq-points {
+  margin: 0 0 4px;
+  padding-left: 20px;
+}
+
+.faq-points {
+  list-style: disc;
+}
+
+.faq-steps li,
+.faq-points li {
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+
+.faq-steps li::marker {
+  color: var(--green-700);
+  font-weight: 700;
+}
+
+.faq-points li::marker {
+  color: var(--green-700);
+}
+
+.faq-steps strong,
+.faq-points strong {
+  color: var(--green-900);
 }
 
 /* ===== Contatti ===== */
@@ -767,143 +801,47 @@ footer span {
   margin-bottom: 40px;
 }
 
-/* Cosa comprende il percorso: carosello orizzontale con card snelle */
-html {
-  scrollbar-gutter: stable; /* evita il "salto" di lato quando lo scroll viene bloccato per un attimo (desktop) */
+/* Cosa comprende il percorso: lista verticale in 3 gruppi */
+.inc-group {
+  max-width: 620px;
+  margin: 0 auto 38px;
 }
 
-.inc-carousel {
-  --inc-pad: 24px; /* come il padding laterale di .container */
-  margin: 0 calc(var(--inc-pad) * -1);
-}
-
-.inc-top {
+.inc-group-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 4px 16px;
-  padding: 0 var(--inc-pad);
-  margin-bottom: 14px;
-}
-
-.inc-count {
+  gap: 12px;
+  margin-bottom: 18px;
   color: var(--green-900);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.inc-count strong {
-  margin-right: 2px;
-  color: var(--green-700);
   font-family: var(--serif);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  font-variant-numeric: lining-nums;
-  font-feature-settings: "lnum" 1;
+  line-height: 1.2;
 }
 
-/* invito a scorrere: pillola colorata, sparisce appena la persona scorre davvero di lato */
-.inc-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 12px 7px 14px;
-  color: #fff;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  background: var(--green-700);
-  border-radius: 999px;
-  box-shadow: 0 4px 12px rgba(28, 58, 43, 0.25);
-  transition: opacity 0.4s ease;
-}
-
-.inc-hint svg {
-  animation: incArrow 1.4s ease-in-out infinite;
-}
-
-.inc-carousel.touched .inc-hint {
-  opacity: 0;
-}
-
-@keyframes incArrow {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(6px); }
-}
-
-.inc-viewport {
-  position: relative;
-}
-
-/* sfumature ai lati: la card tagliata suggerisce che c'è altro da vedere */
-.inc-viewport::before,
-.inc-viewport::after {
+.inc-group-title::before {
   content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 2;
-  width: 44px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  flex-shrink: 0;
+  width: 34px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-600), var(--green-800));
 }
 
-.inc-viewport::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--cream), rgba(241, 238, 229, 0));
-}
-
-.inc-viewport::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--cream), rgba(241, 238, 229, 0));
-}
-
-.inc-viewport.can-left::before,
-.inc-viewport.can-right::after {
-  opacity: 1;
-}
-
-.inc-track {
-  position: relative;
+.inc-list {
   display: flex;
-  gap: 18px;
-  padding: 8px var(--inc-pad) 26px;
-  overflow-x: auto;
+  flex-direction: column;
+  gap: 16px;
   list-style: none;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 0 var(--inc-pad);
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  user-select: none;
-  cursor: grab;
-}
-
-.inc-track::-webkit-scrollbar {
-  display: none;
-}
-
-.inc-track.dragging {
-  cursor: grabbing;
-}
-
-.inc-track:focus-visible {
-  outline: 2px solid var(--green-600);
-  outline-offset: -2px;
-  border-radius: 6px;
 }
 
 .inc-card {
   position: relative;
   display: flex;
-  flex-direction: column;
-  flex: 0 0 clamp(262px, 78vw, 320px);
-  padding: 24px 22px 22px;
-  overflow: hidden;
-  scroll-snap-align: start;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 100px;
+  padding: 16px 18px;
   background: linear-gradient(165deg, var(--white), var(--green-50));
   border: 2px solid var(--line);
   border-radius: 6px;
@@ -913,209 +851,47 @@ html {
 
 @media (hover: hover) {
   .inc-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: var(--green-600);
     box-shadow: var(--shadow-md);
   }
 }
 
 .inc-icon {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  margin-bottom: 16px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--green-600), var(--green-800));
-  box-shadow: 0 6px 14px rgba(28, 58, 43, 0.25);
+  box-shadow: 0 5px 12px rgba(28, 58, 43, 0.25);
 }
 
 .inc-title {
-  margin-bottom: 8px;
+  margin-bottom: 3px;
   color: var(--green-900);
   font-family: var(--serif);
-  font-size: 1.65rem;
+  font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.25;
 }
 
 .inc-desc {
+  margin: 0;
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
-}
-
-/* cosa è incluso, in punti */
-.inc-points {
-  margin: 16px 0 0;
-  padding-top: 14px;
-  list-style: none;
-  border-top: 1px solid var(--line-soft);
-}
-
-.inc-points li {
-  position: relative;
-  padding: 0 0 8px 26px;
-  color: var(--ink);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
-.inc-points li:last-child {
-  padding-bottom: 0;
-}
-
-.inc-points li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 18px;
-  height: 18px;
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 18px;
+.inc-cta {
+  margin-top: 36px;
   text-align: center;
-  background: var(--green-600);
-  border-radius: 50%;
 }
 
-/* l'extra incluso si distingue dalle altre card */
-.inc-card-extra {
-  background: linear-gradient(165deg, var(--green-700) 0%, var(--green-900) 100%);
-  border-color: var(--green-600);
-  box-shadow: 0 8px 18px rgba(28, 58, 43, 0.28);
-}
-
-.inc-label {
-  display: block;
-  margin-bottom: 6px;
-  color: #cfe3d5;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.inc-card-extra .inc-icon {
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: none;
-}
-
-.inc-card-extra .inc-title {
-  color: #fff;
-}
-
-.inc-card-extra .inc-desc {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.inc-card-extra .inc-points {
-  border-top-color: rgba(255, 255, 255, 0.22);
-}
-
-.inc-card-extra .inc-points li {
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.inc-card-extra .inc-points li::before {
-  color: var(--green-900);
-  background: #cfe3d5;
-}
-
-/* piccolo movimento all'ingresso nella pagina, una volta sola */
-.inc-carousel.nudge .inc-card {
-  animation: incNudge 1.3s ease-in-out;
-}
-
-@keyframes incNudge {
-  0%, 100% { translate: 0 0; }
-  40%, 60% { translate: -56px 0; }
-}
-
-.inc-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 0 var(--inc-pad);
-}
-
-.inc-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  padding: 0;
-  color: var(--green-900);
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-}
-
-/* "Avanti" piena di colore finché c'è altro da vedere */
-.inc-next:not(:disabled) {
-  color: #fff;
-  background: var(--green-700);
-  border-color: var(--green-700);
-}
-
-.inc-arrow:hover:not(:disabled) {
-  color: #fff;
-  background: var(--green-800);
-  border-color: var(--green-800);
-}
-
-.inc-arrow:focus-visible {
-  outline: 2px solid var(--green-600);
-  outline-offset: 3px;
-}
-
-.inc-arrow:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-.inc-dots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.inc-dots button {
-  width: 8px;
-  height: 8px;
-  padding: 0;
-  background: rgba(28, 58, 43, 0.25);
-  border: 0;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: width 0.3s ease, background 0.3s ease;
-}
-
-.inc-dots button.active {
-  width: 26px;
-  background: var(--green-700);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .inc-hint svg,
-  .inc-carousel.nudge .inc-card {
-    animation: none;
-  }
-}
-
-/* Mobile: una swipe = una card, sezione più compatta, comandi facili da toccare */
+/* Mobile: titolo della sezione importante, card un po' più compatte */
 @media (max-width: 600px) {
-  .inc-carousel {
-    --inc-pad: 18px;
-  }
   .offer-content.includes .section-title {
     margin-bottom: 16px;
     font-size: 2.5rem;
@@ -1128,53 +904,20 @@ html {
     font-size: 1.05rem;
     line-height: 1.55;
   }
+  .inc-group {
+    margin-bottom: 30px;
+  }
+  .inc-group-title {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+  }
   .inc-card {
-    padding: 20px 20px 22px;
-    scroll-snap-stop: always; /* una swipe = una card */
+    gap: 12px;
+    padding: 14px;
+    min-height: 120px;
   }
   .inc-title {
-    font-size: 1.5rem;
-  }
-  .inc-top {
-    gap: 4px 10px;
-  }
-  .inc-count {
-    font-size: 0.95rem;
-  }
-  .inc-count strong {
-    font-size: 1.5rem;
-  }
-  .inc-hint {
-    padding: 6px 10px 6px 12px;
-    font-size: 0.66rem;
-    letter-spacing: 0.8px;
-  }
-  .inc-hint svg {
-    width: 15px;
-    height: 15px;
-  }
-  .inc-track {
-    padding-bottom: 20px;
-  }
-  .inc-dots button {
-    position: relative;
-  }
-  .inc-dots button::after {
-    content: "";
-    position: absolute;
-    inset: -14px -4px; /* area di tocco più grande */
-  }
-}
-
-@media (max-width: 400px) {
-  .inc-controls {
-    gap: 12px;
-  }
-  .inc-dots {
-    gap: 6px;
-  }
-  .inc-dots button.active {
-    width: 20px;
+    font-size: 1.25rem;
   }
 }
 
@@ -1424,67 +1167,6 @@ html {
   font-size: 0.88rem;
   font-style: italic;
   margin-bottom: 24px;
-}
-
-.process-steps {
-  max-width: 720px;
-  margin: 0 auto 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-  position: relative;
-}
-
-.process-steps::before {
-  content: "";
-  position: absolute;
-  top: 24px;
-  bottom: 0;
-  left: 23px;
-  width: 1px;
-  background: var(--line);
-}
-
-.step {
-  display: grid;
-  grid-template-columns: 46px 1fr;
-  column-gap: 24px;
-  align-items: center;
-  position: relative;
-}
-
-.step-num {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--green-600);
-  color: var(--green-800);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 1.1rem;
-  line-height: 1;
-  font-variant-numeric: lining-nums;
-  font-feature-settings: "lnum" 1;
-  position: relative;
-  z-index: 1;
-}
-
-.step h4 {
-  align-self: center;
-  margin: 0;
-  font-size: 1.05rem;
-  color: var(--green-900);
-}
-
-.step p {
-  grid-column: 2;
-  margin: 6px 0 0;
-  color: var(--muted);
-  font-size: 0.92rem;
 }
 
 .offer-cta {
@@ -1819,7 +1501,7 @@ html {
 
 @media (max-width: 480px) {
   .promo {
-    padding: 72px 0 60px;
+    padding: 72px 0 72px;
   }
   .promo-box {
     padding: 40px 14px 32px;
@@ -2013,9 +1695,6 @@ html {
   .plan-card {
     padding: 38px 28px;
   }
-  .process-steps {
-    gap: 30px;
-  }
   .offer-cta {
     padding: 68px 22px;
   }
@@ -2078,18 +1757,6 @@ html {
   }
   .plan-price {
     font-size: 2.6rem;
-  }
-  .process-steps::before {
-    left: 19px;
-  }
-  .step {
-    grid-template-columns: 38px 1fr;
-    column-gap: 16px;
-  }
-  .step-num {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
   }
   .faq-question {
     font-size: 0.94rem;
@@ -2258,14 +1925,6 @@ html {
 }
 
 /* Il mio metodo: meno testo, spazi più stretti */
-#come-funziona .offer-block {
-  margin-bottom: 56px;
-}
-
-#come-funziona .process-steps {
-  gap: 30px;
-}
-
 #come-funziona .section-title {
   margin-bottom: 30px;
 }

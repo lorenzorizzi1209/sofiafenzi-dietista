@@ -81,13 +81,16 @@ const GA_TITLE_HOME = 'Sofia Fenzi | Home';     // quando qualcuno arriva sul si
 const GA_TITLE_PREZZI = 'Sofia Fenzi | Prezzi'; // quando vengono visualizzati i box dei prezzi
 const GA_TITLE_LASTCARD = 'Sofia Fenzi | LastCard'; // quando si arriva all'ultima card di "Cosa comprende"
 
-// Solo i pulsanti WhatsApp ("Scrivimi", "Fammi una domanda") contano come contatto
+// Solo i pulsanti WhatsApp contano come contatto: a ogni clic Google Analytics riceve l'evento "contatto",
+// con il nome del pulsante premuto in "event_label" (data-label, oppure il testo del pulsante)
+const GA_EVENT_CONTATTO = 'contatto';
+
 function trackButtonClicks() {
   document.querySelectorAll('a[href^="https://wa.me"]').forEach(el => {
     el.addEventListener('click', () => {
       const label = el.dataset.label || el.textContent.replace(/\s+/g, ' ').trim();
       if (window.gtag) {
-        window.gtag('event', 'contact_click', { event_category: 'contatto', event_label: label });
+        window.gtag('event', GA_EVENT_CONTATTO, { event_category: 'contatto', event_label: label });
       }
       if (window.fbq) {
         window.fbq('track', 'Contact', { method: label });

@@ -329,12 +329,25 @@ ul {
   animation: heroFade 0.8s ease 0.65s both;
 }
 
+.hero-modes {
+  animation: heroFade 0.8s ease 0.8s both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-photo-clip img,
   .hero-photo h1,
-  .hero-role {
+  .hero-role,
+  .hero-modes {
     animation: none;
   }
+}
+
+/* In studio a Verona o Online: riga sotto nome e ruolo */
+.hero-modes {
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 /* Buttons */
@@ -2185,5 +2198,129 @@ footer span {
   }
   .journey-step-result .journey-phrase {
     font-size: 1.4rem;
+  }
+}
+
+/* Due modalità dello stesso percorso: in studio / Online */
+.modes {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.modes-title {
+  margin-bottom: 20px;
+  color: var(--green-900);
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.modes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.mode-card {
+  padding: 24px 20px;
+  text-align: center;
+  background: linear-gradient(165deg, var(--white), var(--green-50));
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* stessa icona tonda delle card di "Cosa comprende il percorso" */
+.mode-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-600), var(--green-800));
+  box-shadow: 0 5px 12px rgba(28, 58, 43, 0.25);
+}
+
+.mode-card h4 {
+  margin-bottom: 4px;
+  color: var(--green-900);
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.mode-place {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--green-600);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.mode-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.modes-note {
+  margin: 18px 0 0;
+  color: var(--green-900);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* nota sotto i prezzi */
+.price-note {
+  margin-top: 28px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .modes-grid {
+    gap: 12px; /* resta a 2 colonne */
+  }
+  .modes-title {
+    font-size: 1.45rem;
+  }
+  .mode-card {
+    padding: 20px 12px;
+  }
+  .mode-card h4 {
+    font-size: 1.25rem;
+  }
+  .mode-place {
+    font-size: 0.64rem;
+    letter-spacing: 0.6px;
+  }
+  .mode-card p {
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+  .modes-note {
+    font-size: 0.95rem;
+  }
+  /* spazio sotto le sezioni a cui si è aggiunto contenuto in fondo */
+  .offer-content {
+    padding-bottom: 84px;
+  }
+  .offer-cta {
+    padding: 64px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo {
+    padding: 84px 0;
   }
 }

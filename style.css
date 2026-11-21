@@ -946,9 +946,10 @@ footer span {
 .price-card {
   position: relative;
   padding: 34px 30px 12px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 4px;
+  /* stesso stile delle card di "Cosa comprende il percorso": sfumatura verde e contorno da 2 px */
+  background: linear-gradient(165deg, var(--white), var(--green-50));
+  border: 2px solid var(--line);
+  border-radius: 6px;
   /* ombra più marcata, per staccare le card dal fondo bianco */
   box-shadow: 0 18px 44px rgba(28, 58, 43, 0.24), 0 4px 12px rgba(28, 58, 43, 0.14);
 }

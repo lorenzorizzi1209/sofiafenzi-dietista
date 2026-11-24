@@ -76,13 +76,12 @@ const GA_MEASUREMENT_ID = 'G-D03G6FQD9G';
 const META_PIXEL_ID = '';     // es. '000000000000000'
 
 // Titoli di pagina inviati a Google Analytics. I nomi degli eventi di GA non ammettono
-// spazi o "|", quindi i due momenti sono tracciati come page_view con un titolo dedicato.
+// spazi o "|", quindi i momenti sono tracciati come page_view con un titolo dedicato.
 const GA_TITLE_HOME = 'Sofia Fenzi | Home';     // quando qualcuno arriva sul sito
 const GA_TITLE_PREZZI = 'Sofia Fenzi | Prezzi'; // quando vengono visualizzati i box dei prezzi
-const GA_TITLE_LASTCARD = 'Sofia Fenzi | LastCard'; // quando si arriva all'ultima card di "Cosa comprende"
 const GA_TITLE_CONTATTO = 'Sofia Fenzi | Contatto'; // quando si preme un pulsante WhatsApp
 
-// Solo i pulsanti WhatsApp contano come contatto. Come per Home, Prezzi e LastCard, per Google è una
+// Solo i pulsanti WhatsApp contano come contatto. Come per Home e Prezzi, per Google è una
 // visualizzazione di pagina con titolo dedicato; il pulsante premuto è in "event_label"
 // (data-label, oppure il testo del pulsante)
 function trackButtonClicks() {
@@ -160,25 +159,6 @@ function loadAnalytics() {
       }
     }, { threshold: 0.25 });
     pricingObserver.observe(priceBoxes);
-  }
-
-  // Visualizzazione 3: la persona ha scorso il carosello "Cosa comprende" fino all'ultima card
-  // (una sola volta per visita, quando almeno il 60% dell'ultima card è visibile)
-  const lastIncludeCard = Array.from(document.querySelectorAll('.inc-card')).pop();
-  if (lastIncludeCard) {
-    const lastCardObserver = new IntersectionObserver((entries) => {
-      if (entries.some(e => e.isIntersecting)) {
-        lastCardObserver.disconnect();
-        if (window.gtag) {
-          window.gtag('event', 'page_view', {
-            page_title: GA_TITLE_LASTCARD,
-            page_location: location.origin + location.pathname + '#ultima-card'
-          });
-        }
-        if (window.fbq) window.fbq('trackCustom', 'ViewLastCard', { content_name: 'Cosa comprende: ultima card' });
-      }
-    }, { threshold: 0.6 });
-    lastCardObserver.observe(lastIncludeCard);
   }
 
   trackButtonClicks();
